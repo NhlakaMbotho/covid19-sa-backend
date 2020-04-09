@@ -4,7 +4,6 @@ global.rootPath = __dirname
 // Routes
 const usersRoute = require('./routes/user.route')
 const towingRoute = require('./routes/towing.route')
-const utilityRoute = require('./routes/utility.route')
 
 // Middleware
 const corsMiddleware = require('./middleware/cors.middleware')
