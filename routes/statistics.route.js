@@ -3,8 +3,6 @@ const express = require('express')
 const router = express.Router()
 const Statistic = require('../database/models/statistic.model')
 const ServiceError = require('../models/service-error')
-const Emailer = require('../lib/emailer')
-const InvoiceManager = require('../lib/invoice')
 
 router.post('/create', auth, async (req, res, next) => {
   try {
@@ -13,7 +11,7 @@ router.post('/create', auth, async (req, res, next) => {
     res.send(result)
   } catch (error) {
     if (error.code === 11000) {
-      return next(new ServiceError('Stat already e', error.code + '', 409))
+      return next(new ServiceError('Stat already exists', error.code + '', 409))
     }
     next(new ServiceError(error.message, error.code + '', 422))
   }

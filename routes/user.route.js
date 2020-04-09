@@ -28,13 +28,7 @@ router.post('/sign-up', async (req, res, next) => {
       )
     }
 
-    user = new User({
-      name: req.body.name,
-      password: req.body.password,
-      email: req.body.email,
-      address: req.body.address,
-      telNo: req.body.telNo
-    })
+    user = new User(req.body)
 
     try {
       user.password = await bcrypt.hash(user.password, 10)
@@ -53,15 +47,7 @@ router.post('/sign-up', async (req, res, next) => {
         const token = user.generateAuthToken()
         res
           .header('x-auth-token', token)
-          .send({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            address: user.address,
-            telNo: user.telNo,
-            country: user.country,
-            token
-          })
+          .send({ ...user, token })
           .status(201)
       })
       .catch(err => {
@@ -88,14 +74,7 @@ router.post('/sign-in', async (req, res, next) => {
 
     res
       .header('x-auth-token', token)
-      .send({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        address: user.address,
-        telNo: user.telNo,
-        token
-      })
+      .send({ ...user, token })
       .status(201)
   } catch (err) {
     next(
