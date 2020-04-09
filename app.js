@@ -3,7 +3,7 @@ global.rootPath = __dirname
 
 // Routes
 const usersRoute = require('./routes/user.route')
-const towingRoute = require('./routes/towing.route')
+const towingRoute = require('./routes/statistics.route')
 
 // Middleware
 const corsMiddleware = require('./middleware/cors.middleware')
