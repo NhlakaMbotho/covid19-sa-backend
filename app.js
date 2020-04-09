@@ -17,8 +17,7 @@ const express = require('express')
 const app = express()
 
 if (!process.env.PRIVATE_KEY) {
-  console.log("END: ", process.env.PRIVATE_KEY)
-  console.error('FATAL ERROR: privateKey is not defined.')
+  console.error('FATAL ERROR: PRIVATE_KEY is not defined.')
   process.exit(1)
 }
 

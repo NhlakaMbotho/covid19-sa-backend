@@ -10,6 +10,7 @@
       "name": "Launch Program",
       "env": {
         "NODE_ENV": "development",
+        "APP_ENV": "development",
         "PRIVATE_KEY": "devPrivateKey",
         "PORT": 3000
       },

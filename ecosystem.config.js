@@ -8,6 +8,7 @@ module.exports = {
     max_memory_restart: '1G',
     env: {
       NODE_ENV: 'development',
+      APP_ENV: 'development',
       PRIVATE_KEY: 'devPrivateKey',
       PORT: 3000
     },
