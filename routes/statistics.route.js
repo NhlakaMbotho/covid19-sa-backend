@@ -11,6 +11,7 @@ router.post('/create', auth, async (req, res, next) => {
     res.send(result)
   } catch (error) {
     if (error.code === 11000) {
+      //Need to make the date property of the Statistic object unique 
       return next(new ServiceError('Stat already exists', error.code + '', 409))
     }
     next(new ServiceError(error.message, error.code + '', 422))
