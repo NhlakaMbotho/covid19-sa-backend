@@ -3,7 +3,7 @@ if (!process.env.APP_ENV) process.env.APP_ENV = 'development'
 
 const connectionString = process.env.APP_ENV === 'production'
   ? `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-aaznq.mongodb.net/test?retryWrites=true&w=majority`
-  : 'mongodb://localhost:27017/users'
+  : 'mongodb://localhost:27017/covid19'
 
 module.exports = {
   connect () {

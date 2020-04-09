@@ -33,6 +33,7 @@ app.use(corsMiddleware)
  * Route mappings
  */
 app.use('/api/statistics', statisticsRoute)
+app.use('/', usersRoute)
 
 /**
  * Error handling middleware

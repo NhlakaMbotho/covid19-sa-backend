@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt')
 const { User, validate } = require('../database/models/user.model')
+const Client = require('../models/client.model')
 const express = require('express')
 const router = express.Router()
 const ServiceError = require('../models/service-error')
 
-router.post('/sign-up', async (req, res, next) => {
+
+router.post('/register', async (req, res, next) => {
   try {
     const { error } = validate(req.body)
     if (error) {
@@ -47,7 +49,7 @@ router.post('/sign-up', async (req, res, next) => {
         const token = user.generateAuthToken()
         res
           .header('x-auth-token', token)
-          .send({ ...user, token })
+          .send(new Client(user, token))
           .status(201)
       })
       .catch(err => {
@@ -64,7 +66,7 @@ router.post('/sign-up', async (req, res, next) => {
   }
 })
 
-router.post('/sign-in', async (req, res, next) => {
+router.post('/login', async (req, res, next) => {
   try {
     const user = await User.findByCredentials(
       req.body.email,
@@ -74,7 +76,7 @@ router.post('/sign-in', async (req, res, next) => {
 
     res
       .header('x-auth-token', token)
-      .send({ ...user, token })
+      .send(new Client(user, token))
       .status(201)
   } catch (err) {
     next(
