@@ -25,6 +25,10 @@ if (!process.env.PRIVATE_KEY) {
  * Database Connection
  */
 require('./database/connection').connect()
+
+/**
+ * Setup
+ */
 app.use(express.json({ limit: '50mb' }))
 app.use(corsMiddleware)
 

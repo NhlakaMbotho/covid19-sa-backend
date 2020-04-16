@@ -6,7 +6,7 @@ module.exports = mongoose.model('Statistic', new mongoose.Schema({
   testCases: Number,
   dailyTestCases: Number,
   deaths: Number,
-  unKnownCases: Number,
+  unknownCases: Number,
   date: Date,
   country: String,
   region: String
