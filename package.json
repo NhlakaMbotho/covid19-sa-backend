@@ -10,7 +10,10 @@
   "author": "NhlakaMbotho",
   "license": "ISC",
   "keywords": [
-    "covid19"
+    "covid19",
+    "corona",
+    "covid",
+    "covid-19"
   ],
   "description": "",
   "dependencies": {
