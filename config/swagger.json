@@ -1,0 +1,13 @@
+{
+  "definition": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Covid 19",
+      "version": "1.0.0"
+    }
+  },
+  "apis": [
+    "./routes/statistics.route.js",
+    "./routes/user.route.js"
+  ]
+}

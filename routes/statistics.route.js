@@ -3,7 +3,41 @@ const express = require('express')
 const router = express.Router()
 const Statistic = require('../database/models/statistic.model')
 const ServiceError = require('../models/service-error')
-
+/**
+ * @swagger
+ *
+ * /api/statistics/create:
+ *   post:
+ *     tags:
+ *      - Statistics
+ *     description: Creates a new user
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: name
+ *         description: FullName
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: telNo
+ *         description: User's tel number
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: email
+ *         description: Email address
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: User password
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: login
+ */
 router.post('/create', auth, async (req, res, next) => {
   try {
     const stat = new Statistic(req.body)

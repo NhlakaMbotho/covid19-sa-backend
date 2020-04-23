@@ -5,7 +5,41 @@ const express = require('express')
 const router = express.Router()
 const ServiceError = require('../models/service-error')
 
-
+/**
+ * @swagger
+ *
+ * /api/users/register:
+ *   post:
+ *     tags:
+ *      - Authentication
+ *     description: Creates a new user
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: name
+ *         description: FullName
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: telNo
+ *         description: User's tel number
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: email
+ *         description: Email address
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: User password
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: login
+ */
 router.post('/register', async (req, res, next) => {
   try {
     const { error } = validate(req.body)
@@ -19,7 +53,9 @@ router.post('/register', async (req, res, next) => {
       )
     }
 
-    // find an existing user
+    /**
+     * This is redundant, the same behavior can be achieved by making the email property unique
+     */
     let user = await User.findOne({ email: req.body.email })
     if (user) {
       throw new ServiceError(
@@ -66,6 +102,31 @@ router.post('/register', async (req, res, next) => {
   }
 })
 
+/**
+ * @swagger
+ *
+ * /api/users/login:
+ *   post:
+ *     tags:
+ *      - Authentication
+ *     description: Creates a new user
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: email
+ *         description: Email address
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: User password
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: login
+ */
 router.post('/login', async (req, res, next) => {
   try {
     const user = await User.findByCredentials(

@@ -4,14 +4,19 @@ global.rootPath = __dirname
 /**
  * Route Imports
  */
-const usersRoute = require('./routes/user.route')
-const statisticsRoute = require('./routes/statistics.route')
-
+const routes = require('./routes')
 /**
  * Middleware
  */
 const corsMiddleware = require('./middleware/cors.middleware')
 const errorMiddleware = require('./middleware/error.middleware')
+
+/**
+ * Documentation
+ */
+const swaggerUi = require('swagger-ui-express')
+const swaggerJSDoc = require('swagger-jsdoc')
+const swaggerOptions = require('./config/swagger.json')
 
 const express = require('express')
 const app = express()
@@ -35,8 +40,9 @@ app.use(corsMiddleware)
 /**
  * Route mappings
  */
-app.use('/api/statistics', statisticsRoute)
-app.use('/', usersRoute)
+app.use('/api/statistics', routes.statistics)
+app.use('/api/users', routes.users)
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerOptions), { customCss: '.swagger-ui .topbar { display: none }' }));
 
 /**
  * Error handling middleware
