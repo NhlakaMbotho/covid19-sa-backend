@@ -15,22 +15,22 @@ const ServiceError = require('../models/service-error')
  *       - application/json
  *     parameters:
  *       - name: name
- *         description: FullName
+ *         description:
  *         in: formData
  *         required: true
  *         type: string
  *       - name: telNo
- *         description: User's tel number
+ *         description:
  *         in: formData
  *         required: true
  *         type: string
  *       - name: email
- *         description: Email address
+ *         description:
  *         in: formData
  *         required: true
  *         type: string
  *       - name: password
- *         description: User password
+ *         description:
  *         in: formData
  *         required: true
  *         type: string

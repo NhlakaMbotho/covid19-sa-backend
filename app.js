@@ -1,6 +1,11 @@
 
 global.rootPath = __dirname
 
+if (!process.env.PRIVATE_KEY) {
+  console.error('FATAL ERROR: PRIVATE_KEY is not defined.')
+  process.exit(1)
+}
+
 /**
  * Route Imports
  */
@@ -20,11 +25,6 @@ const swaggerOptions = require('./config/swagger.json')
 
 const express = require('express')
 const app = express()
-
-if (!process.env.PRIVATE_KEY) {
-  console.error('FATAL ERROR: PRIVATE_KEY is not defined.')
-  process.exit(1)
-}
 
 /**
  * Database Connection
