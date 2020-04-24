@@ -42,7 +42,7 @@ app.use(corsMiddleware)
  */
 app.use('/api/statistics', routes.statistics)
 app.use('/api/users', routes.users)
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerOptions), { customCss: '.swagger-ui .topbar { display: none }' }));
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerOptions), { customCss: '' }));
 
 /**
  * Error handling middleware

@@ -58,6 +58,46 @@
               "type": "string"
             }
           }
+        },
+        "CountryStat": {
+          "type": "object",
+          "properties": {
+            "deaths": {
+              "type": "integer"
+            },
+            "unknownCases": {
+              "type": "integer"
+            },
+            "date": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "regions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/RegionalStat"
+              }
+            }
+          }
+        },
+        "RegionalStat": {
+          "type": "object",
+          "properties": {
+            "region": {
+              "type": "string"
+            },
+            "confirmedCases": {
+              "type": "integer"
+            },
+            "testCases": {
+              "type": "integer"
+            },
+            "deaths": {
+              "type": "integer"
+            }
+          }
         }
       },
       "responses": {
@@ -96,7 +136,19 @@
             }
           }
         }
-      }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      },
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ]
     }
   },
   "apis": [

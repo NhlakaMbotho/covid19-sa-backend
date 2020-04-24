@@ -4,6 +4,23 @@ const router = express.Router()
 const Statistic = require('../database/models/statistic.model')
 const ServiceError = require('../models/service-error')
 
+/**
+ * @swagger
+ *
+ * /api/statistics/create:
+ *   post:
+ *     tags:
+ *      - Statistics
+ *     description: Creates a new statistic
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CountryStat'
+ *     responses:
+ *       '401':
+ *          $ref: '#/components/responses/GenericError'
+ */
 router.post('/create', auth, async (req, res, next) => {
   try {
     const stat = new Statistic(req.body)

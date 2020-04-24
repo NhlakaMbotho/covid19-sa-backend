@@ -104,6 +104,11 @@ router.post('/register', async (req, res, next) => {
  *                  type: string
  *                password:
  *                  type: string
+ *           examples:
+ *              login:
+ *                value:
+ *                  email: nhlakambotho@gmail.com
+ *                  password: covid19
  *     responses:
  *       '200':
  *          $ref: '#/components/responses/UserResponse'

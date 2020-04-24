@@ -2,25 +2,20 @@ const mongoose = require('mongoose')
 const Types = mongoose.Schema.Types
 
 module.exports = {
-  Statistic: mongoose.model('Statistic', new mongoose.Schema({
+  RegionalStat: mongoose.model('RegionalStatistic', new mongoose.Schema({
+    region: String,
     confirmedCases: Number,
     testCases: Number,
-    dailyTestCases: Number,
-    deaths: Number,
-    unknownCases: Number,
-    date: Date,
-    country: String,
-    region: String
+    deaths: Number
   })),
 
-  StatisticSnapshot: mongoose.model('StatisticSnapshot', new mongoose.Schema({
-    confirmedCases: Number,
-    testCases: Number,
-    dailyTestCases: Number,
+  CountryStat: mongoose.model('Statistic', new mongoose.Schema({
     deaths: Number,
     unknownCases: Number,
     date: Date,
     country: String,
-    region: String
+    regions: [
+      { type: mongoose.Schema.ObjectId, ref: 'RegionalStatistic' }
+    ]
   }))
 }
