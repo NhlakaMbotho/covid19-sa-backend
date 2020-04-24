@@ -13,32 +13,16 @@ const ServiceError = require('../models/service-error')
  *     tags:
  *      - Authentication
  *     description: Creates a new user
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: name
- *         description:
- *         in: formData
- *         required: true
- *         type: string
- *       - name: telNo
- *         description:
- *         in: formData
- *         required: true
- *         type: string
- *       - name: email
- *         description:
- *         in: formData
- *         required: true
- *         type: string
- *       - name: password
- *         description:
- *         in: formData
- *         required: true
- *         type: string
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
  *     responses:
- *       200:
- *         description: login
+ *       '200':
+ *          $ref: '#/components/responses/UserResponse'
+ *       '401':
+ *          $ref: '#/components/responses/GenericError'
  */
 router.post('/register', async (req, res, next) => {
   try {
@@ -110,22 +94,21 @@ router.post('/register', async (req, res, next) => {
  *     tags:
  *      - Authentication
  *     description: Creates a new user
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: email
- *         description: Email address
- *         in: formData
- *         required: true
- *         type: string
- *       - name: password
- *         description: User password
- *         in: formData
- *         required: true
- *         type: string
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: 'object'
+ *             properties:
+ *                email:
+ *                  type: string
+ *                password:
+ *                  type: string
  *     responses:
- *       200:
- *         description: login
+ *       '200':
+ *          $ref: '#/components/responses/UserResponse'
+ *       '401':
+ *          $ref: '#/components/responses/GenericError'
  */
 router.post('/login', async (req, res, next) => {
   try {
