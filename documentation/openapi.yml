@@ -1,0 +1,232 @@
+openapi: 3.0.0
+info:
+  title: COVID-19 South Africa
+  version: 1.0.0
+paths:
+  /api/users/register:
+    post:
+      tags:
+        - Authentication
+      description: Creates a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          $ref: "#/components/responses/UserResponse"
+        "401":
+          $ref: "#/components/responses/GenericError"
+  /api/users/login:
+    post:
+      tags:
+        - Authentication
+      description: Creates a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+            examples:
+              login:
+                value:
+                  email: nhlakambotho@gmail.com
+                  password: covid19
+      responses:
+        "200":
+          $ref: "#/components/responses/UserResponse"
+        "401":
+          $ref: "#/components/responses/GenericError"
+  /api/statistics/create:
+    post:
+      tags:
+        - Statistics
+      description: Creates a new statistic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CountryStat"
+            examples:
+              CountryStat:
+                $ref: "#/components/examples/CountryStat"
+              responses:
+                "401":
+                  $ref: "#/components/responses/GenericError"
+      responses:
+        "200":
+          $ref: "#/components/responses/CountryStat"
+        "401":
+          $ref: "#/components/responses/GenericError"
+  /api/statistics/update:
+    put:
+      tags:
+        - Statistics
+      description: Creates a new statistic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CountryStat"
+            examples:
+              CountryStat:
+                $ref: "#/components/examples/CountryStat"
+              responses:
+                "401":
+                  $ref: "#/components/responses/GenericError"
+      responses:
+        "200":
+          $ref: "#/components/responses/CountryStat"
+        "401":
+          $ref: "#/components/responses/GenericError"
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        telNo:
+          type: string
+        email:
+          type: string
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            city:
+              type: string
+            region:
+              type: string
+            code:
+              type: string
+            country:
+              type: string
+        password:
+          type: string
+          format: password
+    Error:
+      type: object
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+        code:
+          type: string
+    CountryStat:
+      type: object
+      properties:
+        deaths:
+          type: integer
+        unknownCases:
+          type: integer
+        date:
+          type: string
+        country:
+          type: string
+        regions:
+          type: array
+          items:
+            "$ref": "#/components/schemas/RegionalStat"
+    RegionalStat:
+      type: object
+      properties:
+        region:
+          type: string
+        confirmedCases:
+          type: integer
+        testCases:
+          type: integer
+        deaths:
+          type: integer
+  responses:
+    GenericError:
+      description: Error object
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/Error"
+    UserResponse:
+      description: Response user
+      content:
+        application/json:
+          schema:
+            allOf:
+              - "$ref": "#/components/schemas/User"
+              - type: object
+                properties:
+                  token:
+                    type: string
+                  id:
+                    type: string
+    CountryStat:
+      description: Statistics for a country
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CountryStat"
+      links:
+        auth:
+          $ref: "#/components/links/Auth"
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  examples:
+    CountryStat:
+      value:
+        deaths: 0
+        confirmedCases: 0
+        testCases: 1
+        unknownCases: 0
+        date: "2020-04-05T06:00:00.000Z"
+        country: za
+        regions:
+          - region: EC
+            confirmedCases: 0
+            testCases: 1
+            deaths: 0
+          - region: FS
+            confirmedCases: 0
+            testCases: 0
+            deaths: 0
+          - region: GT
+            confirmedCases: 0
+            testCases: 0
+            deaths: 0
+          - region: NL
+            confirmedCases: 1
+            testCases: 1
+            deaths: 0
+          - region: LP
+            confirmedCases: 0
+            testCases: 0
+            deaths: 0
+          - region: MP
+            confirmedCases: 0
+            testCases: 0
+            deaths: 0
+          - region: NC
+            confirmedCases: 0
+            testCases: 0
+            deaths: 0
+          - region: WC
+            confirmedCases: 0
+            testCases: 0
+            deaths: 0
+  links:
+    Auth:
+      operationId: getJwt
+      parameters:
+        x-access-token: $response.body#/token
+security:
+  - bearerAuth: []

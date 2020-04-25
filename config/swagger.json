@@ -148,7 +148,69 @@
         {
           "bearerAuth": []
         }
-      ]
+      ],
+      "examples": {
+        "CountryStat": {
+          "value": {
+            "deaths": 0,
+            "confirmedCases": 0,
+            "testCases": 1,
+            "unknownCases": 0,
+            "date": "2020-04-05T06:00:00.000Z",
+            "country": "za",
+            "regions": [
+              {
+                "region": "EC",
+                "confirmedCases": 0,
+                "testCases": 1,
+                "deaths": 0
+              },
+              {
+                "region": "FS",
+                "confirmedCases": 0,
+                "testCases": 0,
+                "deaths": 0
+              },
+              {
+                "region": "GT",
+                "confirmedCases": 0,
+                "testCases": 0,
+                "deaths": 0
+              },
+              {
+                "region": "NL",
+                "confirmedCases": 1,
+                "testCases": 1,
+                "deaths": 0
+              },
+              {
+                "region": "LP",
+                "confirmedCases": 0,
+                "testCases": 0,
+                "deaths": 0
+              },
+              {
+                "region": "MP",
+                "confirmedCases": 0,
+                "testCases": 0,
+                "deaths": 0
+              },
+              {
+                "region": "NC",
+                "confirmedCases": 0,
+                "testCases": 0,
+                "deaths": 0
+              },
+              {
+                "region": "WC",
+                "confirmedCases": 0,
+                "testCases": 0,
+                "deaths": 0
+              }
+            ]
+          }
+        }
+      }
     }
   },
   "apis": [

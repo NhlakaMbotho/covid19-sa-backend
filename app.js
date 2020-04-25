@@ -20,7 +20,7 @@ const errorMiddleware = require('./middleware/error.middleware')
  * Documentation
  */
 const swaggerUi = require('swagger-ui-express')
-const swaggerJSDoc = require('swagger-jsdoc')
+const YAML = require('yamljs')
 const swaggerOptions = require('./config/swagger.json')
 
 const express = require('express')
@@ -42,7 +42,7 @@ app.use(corsMiddleware)
  */
 app.use('/api/statistics', routes.statistics)
 app.use('/api/users', routes.users)
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerOptions), { customCss: '' }));
+app.use('/', swaggerUi.serve, swaggerUi.setup(YAML.load('./documentation/openapi.yml')))
 
 /**
  * Error handling middleware

@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "flush": "pm2 flush covid19",
     "dev": "npm run flush && pm2 start ecosystem.config.js && pm2 logs",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "stop": "pm2 stop covid"
   },
   "author": "NhlakaMbotho",
   "license": "ISC",
@@ -24,6 +25,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.7",
     "swagger-jsdoc": "^4.0.0",
-    "swagger-ui-express": "^4.1.4"
+    "swagger-ui-express": "^4.1.4",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "passport-jwt": "^4.0.0"
   }
 }
