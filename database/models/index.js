@@ -8,7 +8,10 @@ module.exports = {
     unknownCases: Number,
     confirmedCases: Number,
     testCases: Number,
-    date: Date,
+    date: {
+      type: Date,
+      unique: true
+    },
     country: String,
     regions: [
       {

@@ -56,30 +56,6 @@ paths:
             examples:
               CountryStat:
                 $ref: "#/components/examples/CountryStat"
-              responses:
-                "401":
-                  $ref: "#/components/responses/GenericError"
-      responses:
-        "200":
-          $ref: "#/components/responses/CountryStat"
-        "401":
-          $ref: "#/components/responses/GenericError"
-  /api/statistics/update:
-    put:
-      tags:
-        - Statistics
-      description: Creates a new statistic
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CountryStat"
-            examples:
-              CountryStat:
-                $ref: "#/components/examples/CountryStat"
-              responses:
-                "401":
-                  $ref: "#/components/responses/GenericError"
       responses:
         "200":
           $ref: "#/components/responses/CountryStat"
