@@ -85,6 +85,16 @@ paths:
           $ref: "#/components/responses/CountryStat"
         "401":
           $ref: "#/components/responses/GenericError"
+  /api/statistics:
+    get:
+      tags:
+        - Statistics
+      description: Get a list of all statistics
+      responses:
+        "200":
+          $ref: "#/components/responses/CountryStat"
+        "401":
+          $ref: "#/components/responses/GenericError"
 components:
   schemas:
     User:
