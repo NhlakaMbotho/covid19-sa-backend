@@ -27,6 +27,9 @@ router.post('/create', auth, async (req, res, next) => {
   }
 })
 
+/**
+ * Probably will not be used
+ */
 router.put('/update', auth, async (req, res, next) => {
   try {
     const stat = new CountryStat(req.body)
@@ -38,9 +41,12 @@ router.put('/update', auth, async (req, res, next) => {
   }
 })
 
+/**
+ * This can be changed to query by date range
+ */
 router.get('/list/:id', auth, async (req, res, next) => {
   try {
-    const stats = await CountryStat.findById(req.params.id)
+    const stats = await CountryStat.find({ id: req.params.id })
     res.send(stats)
   } catch (error) {
     next(new ServiceError(error.message, error.code + '', 400))
